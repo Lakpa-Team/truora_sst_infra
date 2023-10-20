@@ -1,16 +1,14 @@
 import { SSTConfig } from "sst";
-import { DocumentStatesTable, DocumentKeysTable } from "./stacks/Tables"
+import { TruoraInfraestructure } from "./stacks/MyStack";
 
 export default {
   config(_input) {
     return {
-      name: "truora-DynamoDB",
+      name: "sst-truora-integration",
       region: "us-east-1",
     };
   },
   stacks(app) {
-    app
-    .stack(DocumentStatesTable)
-    .stack(DocumentKeysTable);
-  }
+    app.stack(TruoraInfraestructure);
+  },
 } satisfies SSTConfig;
