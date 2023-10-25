@@ -25,11 +25,11 @@ export function GenerateDynamoTable(stack: Stack) {
 
   const solicitudeStateTable = new Table(stack, "SolicitudeState", {
     fields: {
-      solicitudeId: "string",
+      integrationId: "string",
       step: "string",
     },
     primaryIndex: {
-      partitionKey: "solicitudeId",
+      partitionKey: "integrationId",
       sortKey: "step",
     },
   });
