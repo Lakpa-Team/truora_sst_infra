@@ -1,13 +1,13 @@
 import { Stack, Table } from "sst/constructs";
 
 export function GenerateDynamoTable(stack: Stack) {
-  const templateTable = new Table(stack, "Templates", {
+  const templateTable = new Table(stack, "Template", {
     fields: {
-      solicitudeId: "string",
+      solicitudeType: "string",
       userType: "string",
     },
     primaryIndex: {
-      partitionKey: "solicitudeId",
+      partitionKey: "solicitudeType",
       sortKey: "userType",
     },
   });
@@ -26,11 +26,11 @@ export function GenerateDynamoTable(stack: Stack) {
   const solicitudeStateTable = new Table(stack, "SolicitudeState", {
     fields: {
       solicitudeId: "string",
-      state: "string",
+      step: "string",
     },
     primaryIndex: {
       partitionKey: "solicitudeId",
-      sortKey: "state",
+      sortKey: "step",
     },
   });
 
