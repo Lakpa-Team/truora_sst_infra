@@ -23,7 +23,7 @@ export function GenerateDynamoTable(stack: Stack) {
     },
   });
 
-  const solicitudeStateTable = new Table(stack, "SolicitudeState", {
+  const solicitudeStateTable = new Table(stack, "SolicitudeStep", {
     fields: {
       integrationId: "string",
       step: "string",
