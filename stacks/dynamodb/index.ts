@@ -34,9 +34,21 @@ export function GenerateDynamoTable(stack: Stack) {
     },
   });
 
+  const whatsappMessageTable = new Table(stack, "whatsappMessage", {
+    fields: {
+      integrationId: "string",
+      phoneIndex: "string",
+    },
+    primaryIndex: {
+      partitionKey: "integrationId",
+      sortKey: "phoneIndex",
+    },
+  });
+
   return {
     solicitudeTable,
     solicitudeStateTable,
     templateTable,
+    whatsappMessageTable,
   };
 }
