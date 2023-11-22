@@ -34,7 +34,7 @@ export function GenerateDynamoTable(stack: Stack) {
     },
   });
 
-  const whatsappMessageTable = new Table(stack, "WhatsappMessage", {
+  const whatsappMessageTable = new Table(stack, "WhatsAppMessage", {
     fields: {
       integrationId: "string",
       phoneIndex: "string",
