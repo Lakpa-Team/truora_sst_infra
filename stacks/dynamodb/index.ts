@@ -36,12 +36,12 @@ export function GenerateDynamoTable(stack: Stack) {
 
   const whatsappMessageTable = new Table(stack, "WhatsAppMessage", {
     fields: {
-      integrationId: "string",
       phoneIndex: "string",
+      integrationId: "string",
     },
     primaryIndex: {
-      partitionKey: "integrationId",
-      sortKey: "phoneIndex",
+      partitionKey: "phoneIndex",
+      sortKey: "integrationId",
     },
   });
 
