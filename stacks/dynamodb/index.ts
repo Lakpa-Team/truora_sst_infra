@@ -1,18 +1,18 @@
 import { Stack, Table } from "sst/constructs";
 
 export function GenerateDynamoTable(stack: Stack) {
-  const templateTable = new Table(stack, "Template", {
+  const configurationTable = new Table(stack, "Configuration", {
     fields: {
-      solicitudeType: "string",
+      caseType: "string",
       userType: "string",
     },
     primaryIndex: {
-      partitionKey: "solicitudeType",
+      partitionKey: "caseType",
       sortKey: "userType",
     },
   });
 
-  const documentTable = new Table(stack, "Document", {
+  const attachmentConfiguration = new Table(stack, "AttachmentConfiguration", {
     fields: {
       docTag: "string",
     },
@@ -66,8 +66,8 @@ export function GenerateDynamoTable(stack: Stack) {
   });
 
   return {
-    templateTable,
-    documentTable,
+    configurationTable,
+    extradocumentTable: attachmentConfiguration,
 
     solicitudeTable,
     solicitudeStateTable,
