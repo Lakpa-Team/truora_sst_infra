@@ -12,6 +12,15 @@ export function GenerateDynamoTable(stack: Stack) {
     },
   });
 
+  const documentTable = new Table(stack, "Document", {
+    fields: {
+      docTag: "string",
+    },
+    primaryIndex: {
+      partitionKey: "docTag",
+    },
+  });
+
   const solicitudeTable = new Table(stack, "Solicitude", {
     fields: {
       solicitudeId: "string",
@@ -57,9 +66,12 @@ export function GenerateDynamoTable(stack: Stack) {
   });
 
   return {
+    templateTable,
+    documentTable,
+
     solicitudeTable,
     solicitudeStateTable,
-    templateTable,
+
     whatsappMessageTable,
     downloadableDocumentTable,
   };
