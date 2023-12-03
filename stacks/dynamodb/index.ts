@@ -52,6 +52,9 @@ export function GenerateDynamoTable(stack: Stack) {
       partitionKey: "integrationId",
       sortKey: "phoneIndex",
     },
+    globalIndexes: {
+      gsi_integrationId: { partitionKey: "integrationId" },
+    },
   });
 
   const downloadableDocumentTable = new Table(stack, "DownloadableDocument", {
