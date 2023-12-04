@@ -1,14 +1,23 @@
 import { Stack, Table } from "sst/constructs";
 
 export function GenerateDynamoTable(stack: Stack) {
-  const templateTable = new Table(stack, "Template", {
+  const configurationTable = new Table(stack, "Configuration", {
     fields: {
-      solicitudeType: "string",
+      caseType: "string",
       userType: "string",
     },
     primaryIndex: {
-      partitionKey: "solicitudeType",
+      partitionKey: "caseType",
       sortKey: "userType",
+    },
+  });
+
+  const attachmentConfiguration = new Table(stack, "AttachmentConfiguration", {
+    fields: {
+      docTag: "string",
+    },
+    primaryIndex: {
+      partitionKey: "docTag",
     },
   });
 
@@ -43,6 +52,9 @@ export function GenerateDynamoTable(stack: Stack) {
       partitionKey: "phoneIndex",
       sortKey: "integrationId",
     },
+    globalIndexes: {
+      gsi_integrationId: { partitionKey: "integrationId" },
+    },
   });
 
   const downloadableDocumentTable = new Table(stack, "DownloadableDocument", {
@@ -57,9 +69,12 @@ export function GenerateDynamoTable(stack: Stack) {
   });
 
   return {
+    configurationTable,
+    extradocumentTable: attachmentConfiguration,
+
     solicitudeTable,
     solicitudeStateTable,
-    templateTable,
+
     whatsappMessageTable,
     downloadableDocumentTable,
   };
